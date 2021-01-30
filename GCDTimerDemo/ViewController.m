@@ -21,10 +21,10 @@
     [super viewDidLoad];
 
     NSLog(@"begin");
-    //接口设计
+    //创建定时器
     self.timerName =  [GCDTimer executeTask:^{
         NSLog(@">>>>> GCDTimer %@",[NSThread currentThread]);
-    } start:1.0 interval:1.0 repeat:YES async:YES];
+    } start:1.0 interval:1.0 repeat:YES async:NO];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
