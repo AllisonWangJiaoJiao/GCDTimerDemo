@@ -25,6 +25,21 @@ NS_ASSUME_NONNULL_BEGIN
               async:(BOOL)async;
 
 
+/// 创建定时器target
+/// @param target 定时器target 传self
+/// @param selector 定时器方法
+/// @param start 开始时间
+/// @param interval 间隔时间
+/// @param repeats 是否重复
+/// @param async 是否异步
++ (NSString *)executeTarget:(id)target
+                   selector:(SEL)selector
+                      start:(NSTimeInterval)start
+                   interval:(NSTimeInterval)interval
+                    repeats:(BOOL)repeats
+                      async:(BOOL)async;
+
+
 /// 取消任务
 /// @param taskName 任务唯一标识
 + (void)cancleTask:(NSString *)taskName;

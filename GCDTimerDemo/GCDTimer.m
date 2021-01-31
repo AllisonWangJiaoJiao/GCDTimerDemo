@@ -56,6 +56,18 @@ dispatch_semaphore_t semaphore;
     return timerName;
 }
 
++ (NSString *)executeTarget:(id)target selector:(SEL)selector start:(NSTimeInterval)start interval:(NSTimeInterval)interval repeats:(BOOL)repeats async:(BOOL)async {
+    if (!target || !selector) return nil;
+    return [self executeTask:^{
+        if ([target respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [target performSelector:selector];
+#pragma clang diagnostic pop
+        }
+    } start:start interval:interval repeat:repeats async:async];
+}
+
 + (void)cancleTask:(NSString *)taskName {
     if (taskName.length == 0) return;
     

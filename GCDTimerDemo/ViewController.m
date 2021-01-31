@@ -22,9 +22,18 @@
 
     NSLog(@"begin");
     //创建定时器
-    self.timerName =  [GCDTimer executeTask:^{
-        NSLog(@">>>>> GCDTimer %@",[NSThread currentThread]);
-    } start:1.0 interval:1.0 repeat:YES async:NO];
+//    self.timerName =  [GCDTimer executeTask:^{
+//        NSLog(@">>>>> GCDTimer %@",[NSThread currentThread]);
+//    } start:1.0 interval:1.0 repeat:YES async:NO];
+    
+    self.timerName = [GCDTimer executeTarget:self
+                                    selector:@selector(doTask)
+                                       start:2.0 interval:1.0 repeats:YES async:NO];
+    
+}
+
+- (void)doTask {
+    NSLog(@">>>>> selector GCDTimer %@",[NSThread currentThread]);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
